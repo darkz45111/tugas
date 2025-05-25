@@ -1,4 +1,12 @@
-<script setup lang="ts">
+```typescript
+// Add a function to handle the button click
+function incrementCount() {
+  count.value++
+}
+
+// Use the function in the button click event
+<button type="button" @click="incrementCount">count is {{ count }}</button>
+```<script setup lang="ts">
 import { ref } from 'vue'
 
 defineProps<{ msg: string }>()
