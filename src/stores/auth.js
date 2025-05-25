@@ -1,29 +1,11 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-interface User {
-  id: number
-  name: string
-  email: string
-  avatar: string
-}
-
-interface LoginData {
-  email: string
-  password: string
-}
-
-interface RegisterData {
-  name: string
-  email: string
-  password: string
-}
-
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref<User | null>(null)
+  const user = ref(null)
   const isAuthenticated = ref(false)
   const isLoading = ref(false)
-  const error = ref<string | null>(null)
+  const error = ref(null)
 
   function checkAuth() {
     const savedUser = localStorage.getItem('user')
@@ -33,15 +15,15 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function login(data: LoginData) {
+  async function login(data) {
     isLoading.value = true
     error.value = null
-    
+
     try {
-      // Simulate API call with a delay
+      // Simulasi API delay
       await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // Mock validation - in a real app, this would be handled by the backend
+
+      // Validasi login (mock)
       if (data.email === 'user@example.com' && data.password === 'password') {
         const mockUser = {
           id: 1,
@@ -49,7 +31,7 @@ export const useAuthStore = defineStore('auth', () => {
           email: data.email,
           avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150'
         }
-        
+
         user.value = mockUser
         isAuthenticated.value = true
         localStorage.setItem('user', JSON.stringify(mockUser))
@@ -65,22 +47,21 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function register(data: RegisterData) {
+  async function register(data) {
     isLoading.value = true
     error.value = null
-    
+
     try {
-      // Simulate API call with a delay
+      // Simulasi API delay
       await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // Mock registration success
+
       const mockUser = {
         id: Math.floor(Math.random() * 1000) + 1,
         name: data.name,
         email: data.email,
         avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150'
       }
-      
+
       user.value = mockUser
       isAuthenticated.value = true
       localStorage.setItem('user', JSON.stringify(mockUser))

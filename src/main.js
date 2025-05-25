@@ -7,10 +7,13 @@ import './style.css'
 // Import routes
 import routes from './router'
 
-// Create pinia store
+// Import auth store
+import { useAuthStore } from './stores/auth'
+
+// Create Pinia store
 const pinia = createPinia()
 
-// Create router
+// Create Router
 const router = createRouter({
   history: createWebHistory(),
   routes,
@@ -19,7 +22,7 @@ const router = createRouter({
   }
 })
 
-// Authentication guard
+// Auth Guard
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
@@ -34,9 +37,7 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-// Import auth store after creating pinia
-import { useAuthStore } from './stores/auth'
-
+// Mount app
 createApp(App)
   .use(pinia)
   .use(router)

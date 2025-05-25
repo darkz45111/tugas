@@ -1,10 +1,9 @@
-import { RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 
-// Lazy loaded routes for better performance
+// Lazy loaded routes
 const MovieDetail = () => import('../views/MovieDetail.vue')
 const SeriesDetail = () => import('../views/SeriesDetail.vue')
 const Watch = () => import('../views/Watch.vue')
@@ -12,7 +11,7 @@ const Search = () => import('../views/Search.vue')
 const Watchlist = () => import('../views/Watchlist.vue')
 const Profile = () => import('../views/Profile.vue')
 
-const routes: RouteRecordRaw[] = [
+const routes = [
   {
     path: '/',
     name: 'Home',
